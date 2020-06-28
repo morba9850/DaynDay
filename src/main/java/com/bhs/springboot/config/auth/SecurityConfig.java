@@ -28,8 +28,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/")
                 .and()
                 .oauth2Login()
-                .defaultSuccessUrl("http://localhost:8080/weather",true)
-                .failureUrl("http://google.com/")
+                .defaultSuccessUrl("/weather",true)
+                .failureUrl("/")
                 .userInfoEndpoint()
                 .userService(customOAuth2UserService);
     }

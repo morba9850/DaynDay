@@ -10,7 +10,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findByEmail(String email);
     void deleteUserByEmail(String email);
-
     @Query("SELECT p FROM User p ORDER BY p.id DESC")
     List<User> findAllDesc();
 }

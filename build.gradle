@@ -44,10 +44,6 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-oauth2-client')
 
     compile('org.jsoup:jsoup:1.8.3')
-    // spring-data-redis
-    compile('org.springframework.boot:spring-boot-starter-data-redis')
-    //embedded-redis
-    compile group: 'it.ozimov', name: 'embedded-redis', version: '0.7.2'
 
 
     testCompile('org.springframework.boot:spring-boot-starter-test')

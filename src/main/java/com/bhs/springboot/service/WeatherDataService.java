@@ -37,6 +37,8 @@ public class WeatherDataService {
         Elements contents = doc.select("div.info_data");
 
         Elements Datacontents = doc.select("li.on.now.merge1");
+        log.info(Datacontents.toString());
+        log.info(user.getName());
 
         Elements tdContents = contents.select("li");
 

@@ -34,12 +34,14 @@ public class IndexController {
 
 
     @GetMapping("/")
-    public String index(Model model) {
+    public String index(Model model, @LoginUser SessionUser user) {
 
-        model.addAttribute("posts", postsService.findAllDesc());
-
+        if (user != null) {
+            model.addAttribute("userNames", user.getName());
+        }
         return "index";
     }
+
 
     @GetMapping("/posts/save")
     public String postsSave() {

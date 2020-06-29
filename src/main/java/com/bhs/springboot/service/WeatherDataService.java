@@ -40,13 +40,10 @@ public class WeatherDataService {
         log.info(Datacontents.toString());
         log.info(user.getName());
 
-        Elements tdContents = contents.select("li");
+
 
         String temperatureText = contents.select("p.info_temperature span.todaytemp").text().trim();
         String rainText = Datacontents.select("dd.weather_item._dotWrapper span").text().trim();
-        String weatherText = tdContents.get(0).text();
-        String ondoText = tdContents.get(1).text();
-        String ulray = tdContents.get(2).text();
         String usertext = user.getEmail();
         log.info("usertext : "+ usertext);
 
@@ -59,9 +56,6 @@ public class WeatherDataService {
         WeatherStats weatherStats = WeatherStats.builder()
                 .temperature(temperatureInt)
                 .rain(rainInt)
-                .weather(weatherText)
-                .ondo(ondoText)
-                .ulray(ulray)
                 .build();
 
 

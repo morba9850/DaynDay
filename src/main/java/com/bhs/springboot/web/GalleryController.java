@@ -25,7 +25,7 @@ public class GalleryController {
     private S3Service s3Service;
     private GalleryService galleryService;
 
-    @GetMapping("/gallery")
+    @GetMapping("gallery")
     public String dispWrite(Model model) {
         log.info("갤러리 서비스 다녀오겟습니다");
         List<GalleryDto> galleryDtoList = galleryService.getList();
@@ -36,7 +36,7 @@ public class GalleryController {
         return "/gallery";
     }
 
-    @PostMapping("/gallery")
+    @PostMapping("gallery")
     public String execWrite(GalleryDto galleryDto, MultipartFile file, @LoginUser SessionUser user) throws IOException {
         log.info("s3 컨트롤러 시작합니다");
         String imgPath = s3Service.upload(file);
@@ -51,7 +51,7 @@ public class GalleryController {
         return "redirect:/gallery";
     }
 
-    @GetMapping("/gallery/search")
+    @GetMapping("gallery/search")
     public String search(@RequestParam(value = "keyword") String keyword, Model model) {
 
         log.info("검색서비스 다녀오겠습니다");

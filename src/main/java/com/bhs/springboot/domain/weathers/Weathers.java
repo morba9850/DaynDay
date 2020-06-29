@@ -19,29 +19,14 @@ public class Weathers {
     private int temperature;
     private int rain;
 
-    private String ulray;
 
-    private String weather;
 
-    private String ondo;
-
-    private String weathericon;
-
-    private String imgicon;
-
-    private String name;
 
     @Builder
-    public Weathers(int temperature, int rain, String ulray, String weather, String ondo,
-                    String weathericon, String imgicon, String name) {
+    public Weathers(int temperature, int rain) {
         this.temperature = temperature;
         this.rain = rain;
-        this.ulray = ulray;
-        this.weather = weather;
-        this.ondo = ondo;
-        this.weathericon = weathericon;
-        this.imgicon = imgicon;
-        this.name = name;
+
 
 
 

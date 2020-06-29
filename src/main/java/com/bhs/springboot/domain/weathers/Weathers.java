@@ -17,15 +17,30 @@ public class Weathers {
     private String id;
 
     private int temperature;
+
     private int rain;
 
+    private String ulray;
 
+    private String weather;
+
+    private String ondo;
+
+    private String weathericon;
+
+    private String imgicon;
 
 
     @Builder
-    public Weathers(int temperature, int rain) {
+    public Weathers(int temperature, int rain, String ulray, String weather, String ondo,
+                    String weathericon, String imgicon) {
         this.temperature = temperature;
         this.rain = rain;
+        this.ulray = ulray;
+        this.weather = weather;
+        this.ondo = ondo;
+        this.weathericon = weathericon;
+        this.imgicon = imgicon;
 
 
 

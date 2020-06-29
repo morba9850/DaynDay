@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -33,16 +34,22 @@ public class GalleryController {
         model.addAttribute("galleryList", galleryDtoList);
         log.info(galleryDtoList);
 
-        return "/gallery";
+        return "gallery";
     }
 
     @PostMapping("gallery")
-    public String execWrite(GalleryDto galleryDto, MultipartFile file, @LoginUser SessionUser user) throws IOException {
+    @ResponseBody
+    public String execWrite(@RequestParam("data") MultipartFile MultipartFile, GalleryDto galleryDto, @LoginUser SessionUser user) throws IOException {
         log.info("s3 컨트롤러 시작합니다");
-        String imgPath = s3Service.upload(file);
+        log.info(MultipartFile + "멀티파일 file");
+
+        String imgPath = s3Service.upload(MultipartFile);
         String name = user.getEmail();
         galleryDto.setName(name);
         galleryDto.setFilePath(imgPath);
+        log.info(imgPath+"imgPath명");
+        log.info(name+"name명");
+
         log.info("s3 다녀옴 갤러리 서비스 갓다올게");
         galleryService.savePost(galleryDto);
         log.info("갓다왓다");
@@ -59,7 +66,7 @@ public class GalleryController {
         log.info("검색서비스 다녀왔다 ㅎ");
         model.addAttribute("galleryList", galleryDtoList2);
         log.info(galleryDtoList2);
-        return "/gallery";
+        return "gallery";
     }
 
 

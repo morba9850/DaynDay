@@ -11,23 +11,37 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class WeatherStats {
-    private String id;
     private int temperature;
     private int rain;
+    private String ulray;
+    private String weather;
+    private String ondo;
+    private String weathericon;
+    private String imgicon;
 
 
     @Builder
-    public WeatherStats(String id, int temperature, int rain) {
+    public WeatherStats(int temperature, int rain, String ulray, String weather, String ondo,
+                        String weathericon, String imgicon) {
 
         this.temperature = temperature;
         this.rain = rain;
-
+        this.ulray = ulray;
+        this.weather = weather;
+        this.ondo = ondo;
+        this.weathericon = weathericon;
+        this.imgicon = imgicon;
     }
 
     public Weathers toDocument() {
         return Weathers.builder()
                 .temperature(temperature)
                 .rain(rain)
+                .ulray(ulray)
+                .weather(weather)
+                .ondo(ondo)
+                .weathericon(weathericon)
+                .imgicon(imgicon)
                 .build();
     }
 

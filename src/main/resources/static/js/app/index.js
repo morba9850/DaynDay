@@ -5,6 +5,11 @@ const main = {
         $('#btn-userdelete').on('click', function () {
             _this.userdelete();
         });
+        $('#s3-save').on('click', function () {
+            _this.s3save();
+        });
+
+
 
         document.getElementById('btn-save').onclick = function() {
             _this.save();
@@ -24,10 +29,8 @@ const main = {
             title: $('#title').val(),
             author: $('#author').val(),
             content: $('#content').val(),
-
             // image: 주소 솰라솰라,
         };
-
         $.ajax({
             type: 'POST',
             url: '/api/v1/posts',
@@ -41,6 +44,28 @@ const main = {
             alert(JSON.stringify(error));
         });
     },
+
+    s3save : function() {
+        const file = $('#img')[0].files[0];
+        const formData = new FormData();
+        formData.append('data', file);
+
+
+        $.ajax({
+            type: 'POST',
+            url: '/gallery',
+            data: formData,
+            processData: false,
+            contentType: false
+        }).done(function (data) {
+            $('#result-image').attr("src", data);
+        }).fail(function (error) {
+            alert(error);
+        })
+
+    },
+
+
     update : function () {
         const data = {
             title: $('#title').val(),

@@ -4,11 +4,8 @@ import com.bhs.springboot.config.auth.LoginUser;
 import com.bhs.springboot.config.auth.dto.SessionUser;
 import com.bhs.springboot.dto.GalleryDto;
 import com.bhs.springboot.dto.userDto.UserResponseDto;
-import com.bhs.springboot.service.GalleryService;
-import com.bhs.springboot.service.MyinfoService;
-import com.bhs.springboot.service.PostsService;
+import com.bhs.springboot.service.*;
 import com.bhs.springboot.dto.postDto.PostsResponseDto;
-import com.bhs.springboot.service.S3Service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
@@ -29,6 +26,7 @@ public class IndexController {
     private final PostsService postsService;
     private final HttpSession httpSession;
     private final MyinfoService myInfoService;
+    private final WeathersService weathersService;
     private S3Service s3Service;
     private GalleryService galleryService;
 
@@ -39,6 +37,7 @@ public class IndexController {
         if (user != null) {
             model.addAttribute("userNames", user.getName());
         }
+
         return "index";
     }
 

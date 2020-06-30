@@ -28,17 +28,12 @@ public class WeatherDataService {
     private static String WEATHER_DATA_URL2 = "https://weather.naver.com/rgn/cityWetrMain.nhn";
 
 
-    public List<WeatherStats> getWeatherDatas() throws IOException {
-
+/*    public List<WeatherStats> getWeatherDatas() throws IOException {
         List<WeatherStats> weatherStatsList = new ArrayList<>();
         Document doc = Jsoup.connect(WEATHER_DATA_URL).get();
-
         Elements contents = doc.select("div.info_data");
-
         Elements Datacontents = doc.select("li.on.now.merge1");
         log.info(Datacontents.toString());
-
-
         Elements tdContents = contents.select("li");
 
         String temperatureText = contents.select("p.info_temperature span.todaytemp").text().trim();
@@ -68,7 +63,7 @@ public class WeatherDataService {
         System.out.println("날씨 서비스 끝");
         weatherStatsList.add(weatherStats);
         return weatherStatsList;
-    }
+    }*/
 
 
     @Transactional

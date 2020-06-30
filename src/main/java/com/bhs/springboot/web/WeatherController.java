@@ -32,7 +32,7 @@ public class WeatherController {
 
     @GetMapping("/weather")
     public String weather(Model model) throws IOException {
-        List<WeatherStats> weatherStatsList = weatherDataService.getWeatherDatas();
+   /*     List<WeatherStats> weatherStatsList = weatherDataService.getWeatherDatas();*/
         List<AreaStats> areaStatsList = weatherDataService.getAreaDatas();
 
 /*
@@ -43,7 +43,7 @@ public class WeatherController {
         }
 */
 
-        model.addAttribute("weatherStats", weatherStatsList);
+/*        model.addAttribute("weatherStats", weatherStatsList);*/
         model.addAttribute("areaStats", areaStatsList);
         System.out.println(areaStatsList);
         System.out.println("끝");

@@ -45,11 +45,12 @@ const main = {
         });
     },
 
-    s3save : function() {
+    s3save : async function() {
         const file = $('#img')[0].files[0];
         const formData = new FormData();
-        formData.append('data', file);
-
+        await formData.append('data', file);
+        await formData.append('title', document.getElementById('title').value);
+        console.log(formData);
 
         $.ajax({
             type: 'POST',

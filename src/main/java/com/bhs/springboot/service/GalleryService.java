@@ -35,7 +35,6 @@ public class GalleryService {
 
     private GalleryDto convertEntityToDto(GalleryEntity galleryEntity) {
         return GalleryDto.builder()
-                .id(galleryEntity.getId())
                 .title(galleryEntity.getTitle())
                 .filePath(galleryEntity.getFilePath())
                 .name(galleryEntity.getName())

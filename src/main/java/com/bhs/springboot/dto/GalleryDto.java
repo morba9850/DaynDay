@@ -8,7 +8,6 @@ import lombok.*;
 @ToString
 @NoArgsConstructor
 public class GalleryDto {
-    private Long id;
     private String title;
     private String filePath;
     private String name;
@@ -16,7 +15,6 @@ public class GalleryDto {
 
     public GalleryEntity toEntity(){
         GalleryEntity build = GalleryEntity.builder()
-                .id(id)
                 .title(title)
                 .filePath(filePath)
                 .name(name)
@@ -25,8 +23,7 @@ public class GalleryDto {
     }
 
     @Builder
-    public GalleryDto(Long id, String title, String filePath, String name) {
-        this.id = id;
+    public GalleryDto(String title, String filePath, String name) {
         this.title = title;
         this.filePath = filePath;
         this.name = name;

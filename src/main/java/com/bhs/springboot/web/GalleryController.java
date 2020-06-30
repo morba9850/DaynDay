@@ -7,6 +7,7 @@ import com.bhs.springboot.service.GalleryService;
 import com.bhs.springboot.service.S3Service;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.apache.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,9 +43,9 @@ public class GalleryController {
     public String execWrite(@RequestParam("data") MultipartFile MultipartFile, GalleryDto galleryDto, @LoginUser SessionUser user) throws IOException {
         log.info("s3 컨트롤러 시작합니다");
         log.info(MultipartFile + "멀티파일 file");
-
         String imgPath = s3Service.upload(MultipartFile);
         String name = user.getEmail();
+
         galleryDto.setName(name);
         galleryDto.setFilePath(imgPath);
         log.info(imgPath+"imgPath명");
@@ -55,7 +56,7 @@ public class GalleryController {
         log.info("갓다왓다");
         log.info(galleryDto);
 
-        return "redirect:/gallery";
+        return imgPath;
     }
 
     @GetMapping("gallery/search")

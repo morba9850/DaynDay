@@ -10,21 +10,23 @@
                     <div class="col-md-7 text-center" data-aos="fade-up">
                         <h2 class="heading mb-4">Day n Day</h2>
                         {{#userNames}}
-                            <div class="author-info"><a>어서오세요 {{userNames}}님!</a>
+                            <div class="post-info">
+                            <div class="category-info"><a href="https://accounts.google.com/signin/v2/usernamerecovery?hl=ko&passive=true&continue=https%3A%2F%2Fwww.google.com%2F%3Fhl%3Dko&flowName=GlifWebSignIn&flowEntry=ServiceLogin" data-title="View all posts in Lifestyle" title="View all posts in Lifestyle">Google Sign Up
+                            </a></div>
+                            <div class="category-info"><span class="seperator">|</span> <a href="https://accounts.google.com/signin/v2/usernamerecovery?hl=ko&passive=true&continue=https%3A%2F%2Fwww.google.com%2F%3Fhl%3Dko&flowName=GlifWebSignIn&flowEntry=ServiceLogin">Forgot?
+                            </a></div>
+                            <div class="author-info">|<span class="seperator"><a href="/logout" role="button" >Logout</a></span></div>
                             </div>
-                            <div class="author-info"> <a href="#">Day n Day!</a></div>
-                            <div class="author-info"><span class="seperator"></span> <a href="/logout" role="button">Logout</a></div>
                         {{/userNames}}
                         {{^userNames}}
                             <div class="post-info">
 
-                                <div class="category-info"><a href="https://accounts.google.com/signup/v2/webcreateaccount?continue=h
-                                ttps%3A%2F%2Fwww.google.com%2F%3Fhl%3Dko&hl=ko&dsh=S-1929214590%3A1590019849165225&gmb=exp&biz=false&flowName=GlifWebSignIn&flowEntry=SignUp" data-title="View all posts in Lifestyle" title="View all posts in Lifestyle">Google Sign Up
+                                <div class="category-info"><a href="https://accounts.google.com/signin/v2/usernamerecovery?hl=ko&passive=true&continue=https%3A%2F%2Fwww.google.com%2F%3Fhl%3Dko&flowName=GlifWebSignIn&flowEntry=ServiceLogin" data-title="View all posts in Lifestyle" title="View all posts in Lifestyle">Google Sign Up
                                 </a></div>
                                 <div class="category-info"><span class="seperator">|</span> <a href="https://accounts.google.com/signin/v2/usernamerecovery?hl=ko&passive=true&continue=https%3A%2F%2Fwww.google.com%2F%3Fhl%3Dko&flowName=GlifWebSignIn&flowEntry=ServiceLogin">Forgot?
                                 </a></div>
                                 <div class="author-info">|<span class="seperator"><a href="/oauth2/authorization/google"
-                                                                                     role="button">Google Login</a></span>
+                                                                                     role="button" style="font-weight: 900; color: black;">Google Login</a></span>
                                 </div>
                             </div>
                         {{/userNames}}
@@ -60,7 +62,7 @@
                     <h3>Contact Us</h3>
                     <p class="contact-email">morba9850@naver.com</p>
                     <p class="contact-phone">010-1234-5678</p>
-                    <a href="adminl">관리자</a>
+                    <a href="admin">관리자</a>
                 </div>
             </div>
         </div>

@@ -68,9 +68,11 @@ public class IndexController {
     }
 
     @DeleteMapping("/myinfo")
-    public void delete(@LoginUser SessionUser user) {
+    public void delete(@LoginUser SessionUser user/*, HttpSession session*/) {
         log.info(user.getEmail());
         myInfoService.UserDelete(user.getEmail());
+        /*session.invalidate();*/
+
     }
 
 

@@ -94,7 +94,7 @@ const main = {
             type: 'DELETE',
             url: '/myinfo',
         }).done(function () {
-            alert('탈퇴되었습니다.');
+            alert('탈퇴되었습니다');
             window.location.href = '/';
         }).fail(function (error) {
             alert(JSON.stringify(error));

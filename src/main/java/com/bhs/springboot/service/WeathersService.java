@@ -14,6 +14,8 @@ import javax.transaction.Transactional;
 public class WeathersService {
     private final WeathersRepository weathersRepository;
 
+
+
     @Transactional
     public String save(WeatherStats weatherStats) {
         return weathersRepository.save(weatherStats.toDocument()).getId();

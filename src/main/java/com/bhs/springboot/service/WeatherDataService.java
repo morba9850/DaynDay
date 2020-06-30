@@ -22,7 +22,54 @@ import java.util.List;
 @Service
 public class WeatherDataService {
 
-       private static String WEATHER_DATA_URL2 = "https://weather.naver.com/rgn/cityWetrMain.nhn";
+
+    private static String WEATHER_DATA_URL = "http://search.naver.com/search.naver?sm=top_hty&fbm=1&ie=utf8&query=%EC%98%A4%EB%8A%98%EB%82%A0%EC%94%A8";
+
+    private static String WEATHER_DATA_URL2 = "https://weather.naver.com/rgn/cityWetrMain.nhn";
+
+
+    public List<WeatherStats> getWeatherDatas() throws IOException {
+
+        List<WeatherStats> weatherStatsList = new ArrayList<>();
+        Document doc = Jsoup.connect(WEATHER_DATA_URL).get();
+
+        Elements contents = doc.select("div.info_data");
+
+        Elements Datacontents = doc.select("li.on.now.merge1");
+        log.info(Datacontents.toString());
+
+
+        Elements tdContents = contents.select("li");
+
+        String temperatureText = contents.select("p.info_temperature span.todaytemp").text().trim();
+        String rainText = Datacontents.select("dd.weather_item._dotWrapper span").text().trim();
+        String weatherText = tdContents.get(0).text();
+        String ondoText = tdContents.get(1).text();
+        String ulray = tdContents.get(2).text();
+
+
+
+
+        int temperatureInt = Integer.parseInt(temperatureText);
+        int rainInt = Integer.parseInt(rainText);
+
+
+        WeatherStats weatherStats = WeatherStats.builder()
+                .temperature(temperatureInt)
+                .rain(rainInt)
+                .weather(weatherText)
+                .ondo(ondoText)
+                .ulray(ulray)
+                .build();
+
+
+
+        System.out.println(weatherStats.toString());
+        System.out.println("날씨 서비스 끝");
+        weatherStatsList.add(weatherStats);
+        return weatherStatsList;
+    }
+
 
     @Transactional
     public List<AreaStats> getAreaDatas() throws IOException {

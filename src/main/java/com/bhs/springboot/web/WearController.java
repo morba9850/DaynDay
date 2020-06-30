@@ -32,8 +32,9 @@ public class WearController {
 
 
         List<WearStats> wearStatsList = wearDataService.getWearDatas();
+        List<WeatherStats> weatherStatsList = weatherDataService.getWeatherDatas(user);
 
-/*        for(int i = 0; i < weatherStatsList.size(); i++){
+        for(int i = 0; i < weatherStatsList.size(); i++){
             if (weatherStatsList.get(0).getTemperature() < 6) {
                 List<WearDetailDto> wearDetailDtoList = wearDataService.get5service();
                 model.addAttribute("wearDetailDto", wearDetailDtoList );
@@ -68,7 +69,7 @@ public class WearController {
                 List<WearDetailDto> wearDetailDtoList2 = wearDataService.getrain70service();
                 model.addAttribute("wearDetailDto2", wearDetailDtoList2 );
             }
-        }*/
+        }
 
 
         model.addAttribute("wearStats", wearStatsList);

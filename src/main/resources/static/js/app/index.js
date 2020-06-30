@@ -61,7 +61,7 @@ const main = {
         }).done(function (data) {
             $('#result-image').attr("src", data);
         }).fail(function (error) {
-            alert(error);
+            alert("제목과 파일을 확인해주세요");
         })
 
     },

@@ -7,7 +7,6 @@ import com.bhs.springboot.dto.AreaStats;
 import com.bhs.springboot.dto.WearDetailDto;
 import com.bhs.springboot.dto.WeatherStats;
 import lombok.extern.log4j.Log4j2;
-import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -21,47 +20,42 @@ import java.util.List;
 @Log4j2
 @Service
 public class WeatherDataService {
-    private final static String USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36";
 
-
+    private static String WEATHER_DATA_URL = "http://search.naver.com/search.naver?sm=top_hty&fbm=1&ie=utf8&query=%EC%98%A4%EB%8A%98%EB%82%A0%EC%94%A8";
 
     private static String WEATHER_DATA_URL2 = "https://weather.naver.com/rgn/cityWetrMain.nhn";
 
 
+
+
+
     public List<WeatherStats> getWeatherDatas(SessionUser user) throws IOException {
 
-        String URL = "https://n.weather.naver.com/";
-
-        Connection conn = Jsoup.connect(URL)
-                .header("Content-Type", "application/json;charset=UTF-8")
-                .userAgent(USER_AGENT)
-                .method(Connection.Method.GET)
-                .ignoreContentType(true);
-
         List<WeatherStats> weatherStatsList = new ArrayList<>();
+        Document doc = Jsoup.connect(WEATHER_DATA_URL).get();
 
-        Document doc = conn.get();
+        Elements contents = doc.select("div.info_data");
 
-        Elements contents = doc.select("div.section_center");
+        Elements Datacontents = doc.select("li.on.now.merge1");
 
-        String temperatureText = contents.select("strong.current").text().trim();
-        String rainText = contents.select("div.inner_card.climate_rain span.color_cell").text().trim();
-        String weatherText = contents.select("div.weather_area p.summary").text();
-        String ondoText = contents.select("div.degree_group strong.degree_height").text();
-        String ulray = contents.select("div.degree_group strong.degree_low").text();
-        System.out.println("결과볼게여");
-        temperatureText = temperatureText.substring(5, 7);
-        rainText = rainText.substring(5, 7);
+        Elements tdContents = contents.select("li");
 
-        System.out.println(rainText);
-        System.out.println(temperatureText);
+        String temperatureText = contents.select("p.info_temperature span.todaytemp").text().trim();
+        String rainText = Datacontents.select("dd.weather_item._dotWrapper span").text().trim();
+        String weatherText = tdContents.get(0).text();
+        String ondoText = tdContents.get(1).text();
+        String ulray = tdContents.get(2).text();
+        String usertext = user.getEmail();
+        log.info("usertext : "+ usertext);
 
 
-        int tem2 = Integer.parseInt(temperatureText);
+
+        int temperatureInt = Integer.parseInt(temperatureText);
         int rainInt = Integer.parseInt(rainText);
 
+
         WeatherStats weatherStats = WeatherStats.builder()
-                .temperature(tem2)
+                .temperature(temperatureInt)
                 .rain(rainInt)
                 .weather(weatherText)
                 .ondo(ondoText)
@@ -82,23 +76,19 @@ public class WeatherDataService {
 
         Document doc2 = Jsoup.connect(WEATHER_DATA_URL2).get();
 
-        Elements contents2 = doc2.select("table tbody tr");
-
+        Elements contents2 = doc2.select("div.sun_panel tbody tr");
+        System.out.println("날씨 서비");
+        System.out.println(contents2);
         for (Element content2 : contents2) {
 
-            Elements tdContents2 = content2.select("td");
-
+            Elements tdContents2 = content2.select("tr");
 
             String thText = content2.select("th").text();
             if(thText.isEmpty()) {
                 break;
             }
-
-
-
-
             String srcText = tdContents2.select("p.icon img").attr("src");
-            String ulText = tdContents2.select("ul.text").text();
+            String ulText = tdContents2.select("td").text();
 
             AreaStats areaStats = AreaStats.builder()
                     .area(thText)
@@ -107,7 +97,7 @@ public class WeatherDataService {
                     .build();
 
             System.out.println(areaStats.toString());
-            System.out.println(areaStats.toString());
+
             areaStatsList.add(areaStats);
 
         }

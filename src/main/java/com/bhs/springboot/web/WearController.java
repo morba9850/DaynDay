@@ -6,6 +6,7 @@ import com.bhs.springboot.dto.WearDetailDto;
 import com.bhs.springboot.dto.WearStats;
 import com.bhs.springboot.dto.WeatherStats;
 import com.bhs.springboot.service.WearDataService;
+import com.bhs.springboot.service.WearWordService;
 import com.bhs.springboot.service.WeatherDataService;
 import com.bhs.springboot.service.WeathersService;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,7 @@ public class WearController {
 
 
     private final WearDataService wearDataService;
+    private final WearWordService wearWordService;
     private final WeatherDataService weatherDataService;
     private final WeathersService weathersService;
 
@@ -32,6 +34,7 @@ public class WearController {
 
 
         List<WearStats> wearStatsList = wearDataService.getWearDatas();
+        List<WearStats> wearTextList = wearWordService.getWeartextDatas();
         List<WeatherStats> weatherStatsList = weatherDataService.getWeatherDatas(user);
 
         for(int i = 0; i < weatherStatsList.size(); i++){

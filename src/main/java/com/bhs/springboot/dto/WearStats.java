@@ -15,5 +15,6 @@ public class WearStats {
     private String photo2;
     private String gphoto;
     private String mphoto;
+    private String weartext;
 
 }

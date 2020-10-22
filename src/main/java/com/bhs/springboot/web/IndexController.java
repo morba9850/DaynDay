@@ -41,9 +41,9 @@ public class IndexController {
         return "index";
     }
 
-    @GetMapping("/test")
+    @GetMapping("/landom")
     public String test() {
-        return "test";
+        return "landom";
     }
 
 

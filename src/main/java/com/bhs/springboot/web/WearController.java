@@ -5,6 +5,7 @@ import com.bhs.springboot.config.auth.dto.SessionUser;
 import com.bhs.springboot.dto.WearDetailDto;
 import com.bhs.springboot.dto.WearStats;
 import com.bhs.springboot.dto.WeatherStats;
+import com.bhs.springboot.dto.NewsStats;
 import com.bhs.springboot.service.WearDataService;
 import com.bhs.springboot.service.WearWordService;
 import com.bhs.springboot.service.WeatherDataService;
@@ -34,7 +35,7 @@ public class WearController {
 
 
         List<WearStats> wearStatsList = wearDataService.getWearDatas();
-        List<WearStats> wearTextList = wearWordService.getWeartextDatas();
+        List<NewsStats> wearTextList = wearWordService.getWeartextDatas();
         List<WeatherStats> weatherStatsList = weatherDataService.getWeatherDatas(user);
 
         for(int i = 0; i < weatherStatsList.size(); i++){
@@ -76,6 +77,10 @@ public class WearController {
 
 
         model.addAttribute("wearStats", wearStatsList);
+        System.out.println("뉴스 뿌린다");
+        model.addAttribute("newsStats", wearTextList);
+
+        System.out.println(wearTextList);
 
         return "wear";
 

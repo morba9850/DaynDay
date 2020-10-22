@@ -71,21 +71,53 @@
             </div>
         </div> <!-- .section -->
 
-    </div> <!-- .main-wrap -->
 
 
-    <div class="section">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-7 text-center"  data-aos="fade-up">
-                    <h2 class="mb-4">패션뉴스 키워드분석</h2>
 
-                    <div id="wordcloud" style="width: 100%; height: 500px"></div>
 
+        <div class="section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8" data-aos="fade-up">
+
+        <ul class="nav site-tab-nav" id="pills-tab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="pills-breakfast-tab" data-toggle="pill" href="#pills-breakfast" role="tab" aria-controls="pills-breakfast" aria-selected="true">패션 뉴스
+                </a>
+            </li>
+        </ul>
+
+
+        <div class="tab-content" id="pills-tabContent">
+            {{#newsStats}}
+                <div class="tab-pane fade show active" id="pills-breakfast" role="tabpanel" aria-labelledby="pills-breakfast-tab">
+                    <div class="d-block d-md-flex menu-food-item">
+                        <div class="col-md-7" data-aos="fade-up">
+                            <img src="{{img}}" alt="Image placeholder" class="img-fluid">
+                        </div>
+                        <div class="text order-1 mb-3">
+                            <h3><a href="#">{{weartext}}</a></h3>
+                            <p>{{wearsubject}}</p>
+                        </div>
+                        <div class="price order-2">
+                            <strong>{{weardate}}</strong>
+                        </div>
+                    </div>
+                </div>
+
+            {{/newsStats}}
+        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
-    </div> <!-- .section -->
+
+
+
+    </div> <!-- .main-wrap -->
+
+
 
 
 

@@ -3,6 +3,7 @@ package com.bhs.springboot.web;
 import com.bhs.springboot.config.auth.LoginUser;
 import com.bhs.springboot.config.auth.dto.SessionUser;
 import com.bhs.springboot.dto.GalleryDto;
+import com.bhs.springboot.dto.postDto.PostsListResponseDto;
 import com.bhs.springboot.dto.userDto.UserResponseDto;
 import com.bhs.springboot.service.*;
 import com.bhs.springboot.dto.postDto.PostsResponseDto;
@@ -87,6 +88,8 @@ public class IndexController {
 
         model.addAttribute("userNames", user.getName());
         model.addAttribute("posts", postsService.findAllDesc());
+
+
 
         return "diary";
     }

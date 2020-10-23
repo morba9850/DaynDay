@@ -12,25 +12,19 @@ import lombok.Setter;
 @NoArgsConstructor
 public class PostsSaveRequestDto {
     private String title;
-    private String content;
-    private String author;
     private String name;
 
 
     //데이터베이스에 데이터 넣기
     @Builder
-    public PostsSaveRequestDto(String title, String content, String author, String name) {
+    public PostsSaveRequestDto(String title, String name) {
         this.title = title;
-        this.content = content;
-        this.author = author;
         this.name = name;
     }
 
     public Posts toEntity() {
         return Posts.builder()
                 .title(title)
-                .content(content)
-                .author(author)
                 .name(name)
                 .build();
     }
